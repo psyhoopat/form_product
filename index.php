@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -87,7 +89,12 @@
                 <button type="submit">Отправить заказ</button>
                 <button type="reset">Очистить заказ</button>
             </div>
+            <?php if(!empty($_SESSION['error'])): ?>
+                <p style="color: red;"><?= $_SESSION['error'] ?></p>
+            <?php endif; ?>
         </form>
     </div>
 </body>
 </html>
+
+<?php session_destroy(); ?>

@@ -2,8 +2,16 @@
 
 const DEBUG = true;
 
-if(empty($_POST)) {
+if(
+    empty($_POST['product']) ||
+    empty($_POST['count']) ||
+    empty($_POST['pay']) ||
+    empty($_POST['user']) ||
+    empty($_POST['address'])
+) {
+    session_start();
     header('Location: /form_product');
+    $_SESSION['error'] = 'Заполните все поля!';
 }
 
 date_default_timezone_set('Europe/Moscow');
@@ -19,6 +27,9 @@ $data = [
     "user" => $_POST['user'],
     "address" =>  $_POST['address']
 ];
+
+// очистить данные POST
+unset($_POST);
 
 // цена товара
 $data['price'] = get_price_product($data['product']);
@@ -43,11 +54,11 @@ create_if_file_exists($file_name);
 $format_string = "
     Заказчик: ".$data['user']."
     Способ оплаты: ".$data['pay']."
-    Товар: ".$data['name']."
+    Товар: ".$data['product']."
     Цена за одну штуку: ".$data['price']." руб.
     Количество: ".$data['count']." шт.
     Итоговая цена: ".$data['total_price']." руб.
-    Скидка: ".$data['discount']."%
+    Скидка: ".$data['discount_product']."%
     Адрес: ".$data['address']."
     Стоимость заказа с учетом скидки, доставки и налога с продаж: ".$data['total']." руб.\n
 \n";
@@ -57,9 +68,6 @@ write_data_file(
     $file_name,
     $format_string
 );
-
-// очистить данные POST
-unset($_POST['product'], $_POST['count'], $_POST['pay'], $_POST['user'], $_POST['address']);
 
 ?>
 
@@ -87,7 +95,7 @@ unset($_POST['product'], $_POST['count'], $_POST['pay'], $_POST['user'], $_POST[
         <p>Стоимость доставки - 500 руб.</p>
 
         <p>Налог с продаж - 18%</p>
-        <p>Ваша скидка - <?= $data['discount_product '] ?>% (<?= $data['discount_price'] ?> руб.)</p>
+        <p>Ваша скидка - <?= $data['discount_product'] ?>% (<?= $data['discount_price'] ?> руб.)</p>
         <p>Стоимость заказа с учетом скидки, доставки и налога с продаж - <?= $data['total'] ?> руб.</p>
         <p>Адрес доставки - <?= $data['address'] ?></p>
 
