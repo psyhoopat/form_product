@@ -1,8 +1,3 @@
-<?php 
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -14,7 +9,7 @@
 <body>
     <div class="wrapper">
         <h1>Каталог товаров</h1>
-        <div class="showncase">
+        <div class="showcase">
             <div class="card">
                 <img src="static/img/ruchka.gif" alt="pen">
                 <p>Ручка <br/> 10 руб.</p>
@@ -24,7 +19,7 @@
                 <p>Книга <br/> 100 руб.</p>
             </div>
             <div class="card">
-                <img src="static/img/suvenir.jpg" alt="suvenir">
+                <img src="static/img/suvenir.jpg" alt="souvenir">
                 <p>Сувенир <br/> 1000 руб.</p>
             </div>
             <div class="card">
@@ -80,7 +75,7 @@
 
             <div>
                 <label for="user">Фамилия Имя Отчество</label>
-                <input name="user" type="text" placeholder="Иванов Иван Иванович">
+                <input name="user" type="text" placeholder="Иванов Иван Иванович" id="user">
             </div>
 
             <div>
