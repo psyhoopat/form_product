@@ -31,7 +31,7 @@
         </div>
 
         <h1>Заказ</h1>
-        <form class="order" action="/form_product/success.php" method="POST">
+        <form class="order" action="/form_product_mdk09.01_2/success.php" method="POST">
             <div>
                 <label for="product">Вид товара</label>
                 <select name="product" id="product">
